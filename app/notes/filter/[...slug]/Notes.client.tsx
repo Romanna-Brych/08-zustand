@@ -7,9 +7,8 @@ import css from './NotesPage.module.css';
 import { fetchNotes } from '../../../../lib/api';
 import { useState } from 'react';
 import Pagination from '../../../../components/Pagination/Pagination';
-import Modal from '../../../../components/Modal/Modal';
-import NoteForm from '../../../../components/NoteForm/NoteForm';
 import SearchBox from '../../../../components/SearchBox/SearchBox';
+import Link from 'next/link';
 
 interface Props {
   tag?: string;
@@ -19,10 +18,6 @@ function NotesClient({ tag }: Props) {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('');
   const [debouncedQuery] = useDebounce(query, 300);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleCloseModal = () => setIsModalOpen(false);
-  const handleOpenModal = () => setIsModalOpen(true);
 
   const { data } = useQuery({
     queryKey: ['notes', debouncedQuery, page, tag],
@@ -47,19 +42,14 @@ function NotesClient({ tag }: Props) {
             onPageChange={setPage}
           />
         )}
-        <button onClick={handleOpenModal} className={css.button}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
       {data && data.notes.length > 0 ? (
         <NoteList notes={data.notes} />
       ) : (
         data && <p>Nothing found</p>
-      )}
-      {isModalOpen && (
-        <Modal onClose={handleCloseModal}>
-          <NoteForm onClose={handleCloseModal} />
-        </Modal>
       )}
     </div>
   );
