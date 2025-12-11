@@ -1,6 +1,7 @@
 import { NoteTag } from '@/lib/types/note';
 import css from './SidebarNotes.module.css';
 import Link from 'next/link';
+import { ALL_TAG } from '@/lib/config/constanst';
 
 const TAGS: NoteTag[] = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
 
@@ -9,7 +10,7 @@ const SidebarNotes = () => {
     <ul className={css.menuList}>
       {/* список тегів */}
       <li className={css.menuItem}>
-        <Link href={`/notes/filter/all`} className={css.menuLink}>
+        <Link href={`/notes/filter/${ALL_TAG}`} className={css.menuLink}>
           All notes
         </Link>
       </li>

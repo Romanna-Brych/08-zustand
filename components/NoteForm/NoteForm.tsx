@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useNoteDraftStore } from '@/lib/store/noteStore';
+import { ALL_TAG } from '@/lib/config/constanst';
 
 interface NoteFormValues {
   title: string;
@@ -57,7 +58,7 @@ function NoteForm() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
       clearDraft();
-      router.push('/notes/filter/all');
+      router.push(`/notes/filter/${ALL_TAG}`);
     },
   });
 
@@ -130,7 +131,7 @@ function NoteForm() {
 
       <div className={css.actions}>
         <button
-          onClick={() => router.push('/notes/filter/all')}
+          onClick={() => router.push(`/notes/filter/${ALL_TAG}`)}
           type="button"
           className={css.cancelButton}
         >

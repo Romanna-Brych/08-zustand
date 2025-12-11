@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import NotesClient from './Notes.client';
 import { Metadata } from 'next';
-import { BASE_URL } from '@/lib/config/constanst';
+import { ALL_TAG, BASE_URL } from '@/lib/config/constanst';
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -39,11 +39,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const NotesByCategory = async ({ params }: Props) => {
   const { slug } = await params;
-  const tag = slug[0] === 'all' ? undefined : slug[0];
+  const tag = slug[0] === ALL_TAG ? undefined : slug[0];
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ['notes', '', 1, tag],
+    queryKey: ['notes', { page: 1, tag }],
     queryFn: () => fetchNotes('', 1, tag),
   });
 

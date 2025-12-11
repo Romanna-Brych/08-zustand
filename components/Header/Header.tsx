@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import css from './Header.module.css';
+import { ALL_TAG } from '@/lib/config/constanst';
 
 function Header() {
   return (
@@ -13,7 +14,7 @@ function Header() {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/notes/filter/all">Notes</Link>
+            <Link href={`/notes/filter/${ALL_TAG}`}>Notes</Link>
           </li>
         </ul>
       </nav>
