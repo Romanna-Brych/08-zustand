@@ -1,12 +1,13 @@
 'use client';
 
 import css from './NoteForm.module.css';
-import type { NoteTag } from '../../types/note';
+import type { NoteTag } from '../../lib/types/note';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createNote } from '../../lib/api';
+import { createNote } from '../../lib/api/api';
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useNoteDraftStore } from '@/lib/store/noteStore';
 
 interface NoteFormValues {
   title: string;
@@ -30,15 +31,36 @@ function NoteForm() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const { draft, setDraft, clearDraft } = useNoteDraftStore();
+
+  const handleChange = (
+    event: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = event.target;
+    setDraft({
+      ...draft,
+      [name]: value,
+    });
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
+  };
 
   const { mutate, isPending } = useMutation({
     mutationKey: ['notes'],
     mutationFn: createNote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
+      clearDraft();
+      router.push('/notes/filter/all');
     },
   });
-  
+
   const handleSubmit = async (formData: FormData) => {
     const values: NoteFormValues = {
       title: formData.get('title') as string,
@@ -64,13 +86,22 @@ function NoteForm() {
     <form action={handleSubmit} className={css.form}>
       <div className={css.formGroup}>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" name="title" className={css.input} />
+        <input
+          value={draft.title}
+          onChange={handleChange}
+          id="title"
+          type="text"
+          name="title"
+          className={css.input}
+        />
         {errors.title && <span className={css.error}>{errors.title}</span>}
       </div>
 
       <div className={css.formGroup}>
         <label htmlFor="content">Content</label>
         <textarea
+          value={draft.content}
+          onChange={handleChange}
           id="content"
           name="content"
           rows={8}
@@ -81,7 +112,13 @@ function NoteForm() {
 
       <div className={css.formGroup}>
         <label htmlFor="tag">Tag</label>
-        <select id="tag" name="tag" className={css.select}>
+        <select
+          value={draft.tag}
+          onChange={handleChange}
+          id="tag"
+          name="tag"
+          className={css.select}
+        >
           <option value="Todo">Todo</option>
           <option value="Work">Work</option>
           <option value="Personal">Personal</option>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Note } from '../types/note';
+import type { NewNote, Note } from '../types/note';
 
 axios.defaults.baseURL = 'https://notehub-public.goit.study/api';
 const TOKEN = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
@@ -7,12 +7,6 @@ const TOKEN = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
-}
-
-interface NewNote {
-  title: string;
-  content: string;
-  tag: string;
 }
 
 export async function fetchNotes(
