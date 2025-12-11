@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { NewNote } from '../types/note';
+import { NewNote } from '../../types/note';
 import { persist } from 'zustand/middleware';
 
 interface NoteDraftStore {
