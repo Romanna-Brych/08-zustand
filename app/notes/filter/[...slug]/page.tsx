@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-query';
 import NotesClient from './Notes.client';
 import { Metadata } from 'next';
+import { BASE_URL } from '@/lib/config/constanst';
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -16,18 +17,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const filter = slug?.[0] || 'all';
   const title = `Notes: ${filter}`;
   const description = `Notes filtered by "${filter}"`;
-  //url
-  const baseUrl = '';
+
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/notes/filter/${filter}`,
+      url: `${BASE_URL}/notes/filter/${filter}`,
       images: [
         {
-          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+          url: '/notehub-og.jpg',
           width: 1200,
           height: 630,
           alt: 'NoteHub',

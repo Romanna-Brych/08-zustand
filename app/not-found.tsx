@@ -1,17 +1,17 @@
 import { Metadata } from 'next';
 import css from './Home.module.css';
+import { BASE_URL } from '@/lib/config/constanst';
 
 export const metadata: Metadata = {
   title: 'Page Not Found',
   description: 'This page does not exist.',
-  //url
   openGraph: {
     title: 'Page Not Found',
     description: 'This page does not exist.',
-    //url
+    url: BASE_URL,
     images: [
       {
-        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        url: '/notehub-og.jpg',
         width: 1200,
         height: 630,
         alt: 'NoteHub',

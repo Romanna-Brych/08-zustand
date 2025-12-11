@@ -1,6 +1,7 @@
 import NoteForm from '@/components/NoteForm/NoteForm';
 import css from './CreateNote.module.css';
 import { Metadata } from 'next';
+import { BASE_URL } from '@/lib/config/constanst';
 
 export const metadata: Metadata = {
   title: 'Create Note',
@@ -8,10 +9,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Create Note',
     description: 'Create Note',
-    //url
+    url: `${BASE_URL}notes/action/create`,
     images: [
       {
-        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        url: '/notehub-og.jpg',
         width: 1200,
         height: 630,
         alt: 'NoteHub',

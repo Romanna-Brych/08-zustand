@@ -1,7 +1,8 @@
 import axios from 'axios';
 import type { NewNote, Note } from '../types/note';
+import { API_URL } from '../config/constanst';
 
-axios.defaults.baseURL = 'https://notehub-public.goit.study/api';
+axios.defaults.baseURL = API_URL;
 const TOKEN = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
 interface FetchNotesResponse {

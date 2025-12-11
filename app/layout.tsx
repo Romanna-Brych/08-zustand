@@ -4,12 +4,13 @@ import './globals.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import { BASE_URL } from '@/lib/config/constanst';
 
 const roboto = Roboto({
   variable: '--roboto',
   subsets: ['latin'],
-  weight:['400','600','700'],
-  display:'swap'
+  weight: ['400', '600', '700'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -18,10 +19,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'NoteHub',
     description: 'Fast and effortless note organization.',
-    //url
+    url: BASE_URL,
     images: [
       {
-        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        url: '/notehub-og.jpg',
         width: 1200,
         height: 630,
         alt: 'NoteHub',

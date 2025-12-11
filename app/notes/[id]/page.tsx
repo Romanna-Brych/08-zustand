@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-query';
 import NoteDetailsClient from './NoteDetails.client';
 import { Metadata } from 'next';
+import { BASE_URL } from '@/lib/config/constanst';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -16,18 +17,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const note = await fetchNoteById(id);
   const title = `Note: ${note.title}`;
   const description = `${note.content.slice(0, 30)}`;
-  //url
-  const baseUrl = '';
+
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/notes/${id}`,
+      url: `${BASE_URL}/notes/${id}`,
       images: [
         {
-          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+          url: '/notehub-og.jpg',
           width: 1200,
           height: 630,
           alt: 'NoteHub',
