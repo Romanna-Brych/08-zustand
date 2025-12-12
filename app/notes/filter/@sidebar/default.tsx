@@ -1,7 +1,7 @@
 import { NoteTag } from '@/types/note';
 import css from './SidebarNotes.module.css';
 import Link from 'next/link';
-import { ALL_TAG } from '@/lib/config/constanst';
+import { ALL_TAG } from '@/lib/config/constants';
 
 const TAGS: NoteTag[] = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
 

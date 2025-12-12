@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import css from './Header.module.css';
-import { ALL_TAG } from '@/lib/config/constanst';
+import { ALL_TAG } from '@/lib/config/constants';
 
 function Header() {
   return (

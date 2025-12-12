@@ -1,7 +1,7 @@
 import NoteForm from '@/components/NoteForm/NoteForm';
 import css from './CreateNote.module.css';
 import { Metadata } from 'next';
-import { BASE_URL } from '@/lib/config/constanst';
+import { BASE_URL } from '@/lib/config/constants';
 
 export const metadata: Metadata = {
   title: 'Create Note',

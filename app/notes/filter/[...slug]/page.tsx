@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import NotesClient from './Notes.client';
 import { Metadata } from 'next';
-import { ALL_TAG, BASE_URL } from '@/lib/config/constanst';
+import { ALL_TAG, BASE_URL } from '@/lib/config/constants';
 
 interface Props {
   params: Promise<{ slug: string[] }>;

@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useNoteDraftStore } from '@/lib/store/noteStore';
-import { ALL_TAG } from '@/lib/config/constanst';
+import { ALL_TAG } from '@/lib/config/constants';
 
 interface NoteFormValues {
   title: string;

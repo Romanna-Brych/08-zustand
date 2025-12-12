@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import css from './Home.module.css';
-import { BASE_URL } from '@/lib/config/constanst';
+import { BASE_URL } from '@/lib/config/constants';
 
 export const metadata: Metadata = {
   title: 'Page Not Found',
